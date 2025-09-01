@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Israel Knowledge Assessment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --israel-blue: #0038b8;
+            --israel-blue-dark: #00216c;
+            --israel-blue-light: #0048eb;
+            --white: #ffffff;
+            --gray-light: #f7f9fc;
+            --gray-medium: #e1e8f0;
+            --gray-dark: #2c3e50;
+            --gold: #FFD700;
+            --success: #229954;
+            --error: #e74c3c;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--israel-blue) 0%, var(--white) 50%, var(--israel-blue) 100%);
+            z-index: 1000;
+        }
+
+        .magen-david-bg {
+            position: fixed;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .magen-david-bg:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+        }
+
+        .magen-david-bg:nth-child(2) {
+            top: 60%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: var(--white);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            z-index: 10;
+            border: 1px solid var(--gray-medium);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--israel-blue-dark) 0%, var(--israel-blue) 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before,
+        .header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--white);
+        }
+
+        .header::before {
+            top: 20px;
+        }
+
+        .header::after {
+            bottom: 20px;
+        }
+
+        .main-emblem {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .main-emblem svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            opacity: 0.95;
+        }
+
+        .hebrew-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .form-section {
+            padding: 50px;
+            background: var(--gray-light);
+            position: relative;
+            display: block;
+        }
+
+        .form-title {
+            color: var(--israel-blue-dark);
+            margin-bottom: 30px;
+            font-size: 1.5em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .form-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--israel-blue);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray-dark);
+            font-weight: 500;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray-medium);
+            font-size: 16px;
+            transition: all 0.3s;
+            background: var(--white);
+            font-family: 'Heebo', sans-serif;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--israel-blue);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+
+        .category-menu-section {
+            padding: 50px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .category-menu-section.active {
+            display: block;
+        }
+
+        .category-menu-title {
+            text-align: center;
+            color: var(--israel-blue-dark);
+            font-size: 2em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border: 3px solid var(--gray-medium);
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            border-color: var(--israel-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card.selected {
+            background: linear-gradient(135deg, var(--israel-blue), var(--israel-blue-dark));
+            color: var(--white);
+            border-color: var(--israel-blue-dark);
+        }
+
+        .category-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .category-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .category-description {
+            font-size: 0.9em;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .category-questions {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--israel-blue);
+        }
+
+        .category-card.selected .category-questions {
+            color: var(--white);
+        }
+
+        .quiz-mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .mode-btn {
+            padding: 15px 30px;
+            border: 3px solid var(--israel-blue);
+            background: var(--white);
+            color: var(--israel-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .mode-btn.active {
+            background: var(--israel-blue);
+            color: var(--white);
+        }
+
+        .quiz-section {
+            padding: 50px;
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .quiz-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-container {
+            background: var(--gray-light);
+            padding: 20px;
+            margin: -50px -50px 40px -50px;
+            border-bottom: 2px solid var(--gray-medium);
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: var(--gray-dark);
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            background: var(--gray-medium);
+            height: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--israel-blue), var(--israel-blue-light));
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,56,184,0.5);
+        }
+
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--israel-blue), var(--israel-blue-dark));
+            color: var(--white);
+            padding: 12px 24px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            box-shadow: var(--shadow-md);
+        }
+
+        .question-card {
+            background: var(--white);
+            border: 2px solid var(--gray-medium);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .question-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--israel-blue);
+        }
+
+        .question-number {
+            color: var(--israel-blue);
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .question-text {
+            color: var(--gray-dark);
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: var(--gray-light);
+            border: 3px solid transparent;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: 1.1em;
+        }
+
+        .option:hover {
+            border-color: var(--israel-blue);
+            background: var(--white);
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .option.selected {
+            background: linear-gradient(135deg, var(--israel-blue), var(--israel-blue-dark));
+            color: var(--white);
+            border-color: var(--israel-blue-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        .option-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 15px;
+            border: 2px solid currentColor;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .option.selected .option-letter {
+            background: var(--white);
+            color: var(--israel-blue);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 40px 50px;
+            background: var(--gray-light);
+            margin: 0 -50px -50px -50px;
+            border-top: 2px solid var(--gray-medium);
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--israel-blue), var(--israel-blue-dark));
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--israel-blue);
+            border: 3px solid var(--israel-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--israel-blue);
+            color: var(--white);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .results-section {
+            padding: 50px;
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .rank-display {
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--gray-light), var(--white));
+            border: 3px solid var(--israel-blue);
+            position: relative;
+        }
+
+        .rank-display::before,
+        .rank-display::after {
+            content: '★';
+            position: absolute;
+            font-size: 30px;
+            color: var(--gold);
+            top: 20px;
+        }
+
+        .rank-display::before {
+            left: 20px;
+        }
+
+        .rank-display::after {
+            right: 20px;
+        }
+
+        .rank-title {
+            font-size: 1.2em;
+            color: var(--gray-dark);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .rank-name {
+            font-size: 2.5em;
+            color: var(--israel-blue);
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,56,184,0.1);
+        }
+
+        .rank-description {
+            font-size: 1.2em;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .score-display {
+            font-size: 3.5em;
+            color: var(--israel-blue);
+            margin: 30px 0;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,56,184,0.1);
+        }
+
+        .result-message {
+            font-size: 1.3em;
+            color: var(--gray-dark);
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .category-results {
+            margin-top: 50px;
+            text-align: left;
+        }
+
+        .category-results h3 {
+            color: var(--israel-blue-dark);
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-result {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: var(--gray-light);
+            border-left: 5px solid var(--israel-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .category-result:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-result h4 {
+            color: var(--gray-dark);
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .category-score {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .score-text {
+            color: var(--israel-blue);
+            font-weight: 700;
+            font-size: 1.1em;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .explanation-section {
+            background: #f0f8ff;
+            border-left: 4px solid var(--israel-blue);
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .explanation-section.show {
+            display: block;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: var(--israel-blue-dark);
+            margin-bottom: 10px;
+        }
+
+        .explanation-text {
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        .source-link {
+            color: var(--israel-blue);
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .form-section,
+            .quiz-section,
+            .results-section,
+            .category-menu-section {
+                padding: 30px 20px;
+            }
+
+            .button-container {
+                padding: 30px 20px;
+                margin: 0 -20px -30px -20px;
+                flex-direction: column;
+            }
+
+            .question-card {
+                padding: 25px;
+            }
+
+            .form-grid,
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Star of David Background -->
+    <svg class="magen-david-bg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(60,60)" fill="#0038b8" opacity="0.5">
+            <polygon points="0,-35 30,17.5 -30,17.5"/>
+            <polygon points="0,35 -30,-17.5 30,-17.5"/>
+        </g>
+    </svg>
+    <svg class="magen-david-bg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(60,60)" fill="#0038b8" opacity="0.5">
+            <polygon points="0,-35 30,17.5 -30,17.5"/>
+            <polygon points="0,35 -30,-17.5 30,-17.5"/>
+        </g>
+    </svg>
+
+    <div class="container">
+        <div class="header">
+            <div class="main-emblem">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- True Magen David - Star of David -->
+                    <g transform="translate(60,60)">
+                        <!-- Upward pointing triangle -->
+                        <polygon points="0,-35 30,17.5 -30,17.5" 
+                                 fill="none" 
+                                 stroke="white" 
+                                 stroke-width="3"/>
+                        <!-- Downward pointing triangle -->
+                        <polygon points="0,35 -30,-17.5 30,-17.5" 
+                                 fill="none" 
+                                 stroke="white" 
+                                 stroke-width="3"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="hebrew-title">מדינת ישראל</div>
+            <h1>JEWISH WARRIOR PROJECT</h1>
+            <p class="subtitle">KNOWLEDGE ASSESSMENT</p>
+            <p style="font-size: 1em; opacity: 0.8; margin-top: 10px; font-weight: 300;">Quiz Created by Zack and Ariel</p>
+        </div>
+
+        <!-- Registration Form -->
+        <div class="form-section" id="formSection">
+            <h2 class="form-title">Candidate Registration</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Enter your last name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Enter your first name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="example@domain.com">
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <div></div>
+                <button class="btn btn-primary" onclick="proceedToCategories()" id="proceedBtn">PROCEED TO ASSESSMENT</button>
+            </div>
+        </div>
+
+        <!-- Category Selection Menu -->
+        <div class="category-menu-section" id="categoryMenuSection">
+            <h2 class="category-menu-title">Select Assessment Mode</h2>
+            
+            <div class="quiz-mode-selector">
+                <button class="mode-btn" onclick="setQuizMode('single')">SINGLE SECTION</button>
+                <button class="mode-btn active" onclick="setQuizMode('all')">COMPLETE ASSESSMENT (50 QUESTIONS)</button>
+            </div>
+
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories will be populated by JavaScript -->
+            </div>
+
+            <div class="button-container">
+                <button class="btn btn-secondary" onclick="backToForm()">◄ BACK</button>
+                <button class="btn btn-primary" id="startQuizBtn" onclick="safeStartQuiz()">START ASSESSMENT</button>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="quiz-section" id="quizSection">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progressText">Question 1 of 50</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            
+            <div class="category-badge" id="categoryBadge"></div>
+            
+            <div class="question-card">
+                <div class="question-number" id="questionNumber"></div>
+                <h3 class="question-text" id="questionText"></h3>
+                <div class="options" id="optionsContainer"></div>
+            </div>
+
+            <div class="explanation-section" id="explanationSection">
+                <div class="explanation-title">Explanation:</div>
+                <div class="explanation-text" id="explanationText"></div>
+                <a href="#" class="source-link" id="sourceLink" target="_blank">Source →</a>
+            </div>
+            
+            <div class="button-container">
+                <button class="btn btn-secondary" id="prevBtn" onclick="safePreviousQuestion()">◄ PREVIOUS</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="safeNextQuestion()">NEXT ►</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <h2 style="font-size: 2.5em; color: #002570; margin-bottom: 30px;">ASSESSMENT COMPLETE</h2>
+            
+            <div class="rank-display">
+                <p class="rank-title">YOUR ACHIEVED RANK</p>
+                <h3 class="rank-name" id="rankName"></h3>
+                <p class="rank-description" id="rankDescription"></p>
+            </div>
+
+            <div class="score-display" id="scoreDisplay"></div>
+            <p class="result-message" id="resultMessage"></p>
+            
+            <div class="category-results" id="categoryResults"></div>
+            
+            <div class="button-container">
+                <button class="btn btn-secondary" onclick="safeDownloadResults()">DOWNLOAD CERTIFICATE</button>
+                <button class="btn btn-primary" onclick="safeRestartQuiz()" id="mainRestartBtn">RETAKE ASSESSMENT</button>
+                <button class="btn btn-secondary" onclick="window.location.reload()" id="backupRestartBtn" style="display: none; margin-left: 10px;">RESTART (BACKUP)</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Complete question database
+        const questionsDB = {
+            0: [ // Section 1 - Roots & Early Return (1882-1897)
+                {
+                    id: 'roots_001',
+                    question: "When does Israel's modern reestablishment truly begin?",
+                    options: ["1948, with the Declaration of Independence", "1917, with the Balfour Declaration", "1882, with the First Aliyah", "1897, with the First Zionist Congress"],
+                    correct: 2,
+                    explanation: "The First Aliyah (1882-1903) marked the start of mass Jewish return, decades before Israel's independence or Herzl's Zionism.",
+                    source: "Jewish Virtual Library - Aliyah"
+                },
+                {
+                    id: 'roots_002',
+                    question: "What was the main driver of the First Aliyah?",
+                    options: ["British encouragement under the Mandate", "Zionist political lobbying in Europe", "Pogroms and antisemitism in Russia & Romania", "Promises of wealth in the Middle East"],
+                    correct: 2,
+                    explanation: "The First Aliyah was grassroots. Jews fled Russian and Romanian pogroms, seeking safety in their ancestral homeland.",
+                    source: "Encyclopedia Britannica - First Aliyah"
+                },
+                {
+                    id: 'roots_003',
+                    question: "Roughly how many people lived in Ottoman Palestine in 1882?",
+                    options: ["1 million", "800,000", "450,000-500,000", "200,000"],
+                    correct: 2,
+                    explanation: "The population was around 450,000-500,000, less than 10 people per square kilometer. Jews made up only 20,000-40,000 of that.",
+                    source: "Jewish Virtual Library - Demographics"
+                },
+                {
+                    id: 'roots_004',
+                    question: "By the early 1880s, which city already had a Jewish majority?",
+                    options: ["Hebron", "Jaffa", "Jerusalem", "Safed"],
+                    correct: 2,
+                    explanation: "By the 1880s, Jews had become the majority in Jerusalem — showing a strong presence even before political Zionism.",
+                    source: "Jewish Virtual Library - Jerusalem: Demographic History"
+                },
+                {
+                    id: 'roots_005',
+                    question: "What percentage of land sold to Jews before 1947 came from Arabs living in Palestine?",
+                    options: ["10%", "25%", "50%", "75%"],
+                    correct: 1,
+                    explanation: "About 25% of Jewish-purchased land was sold by local Arabs; ~75% came from absentee landlords in Beirut, Damascus, and Cairo.",
+                    source: "Jewish Virtual Library - Myths & Facts: Land Purchase"
+                },
+                {
+                    id: 'roots_006',
+                    question: "Which event convinced Theodor Herzl that Jews would never be safe in Europe without a homeland?",
+                    options: ["The Russian pogroms of 1881", "The Dreyfus Affair in France, 1894", "The First World War", "The British Mandate, 1917"],
+                    correct: 1,
+                    explanation: "Covering the Dreyfus Affair as a journalist, Herzl saw the venom of antisemitism and concluded that Jews needed their own state.",
+                    source: "Encyclopedia Britannica - Theodor Herzl"
+                },
+                {
+                    id: 'roots_007',
+                    question: "When was the First Zionist Congress held?",
+                    options: ["1882", "1894", "1897", "1903"],
+                    correct: 2,
+                    explanation: "Herzl convened the First Zionist Congress in Basel in 1897, launching political Zionism in an organized form.",
+                    source: "Jewish Virtual Library - First Zionist Congress"
+                },
+                {
+                    id: 'roots_008',
+                    question: "What does the First Aliyah prove about anti-Israel accusations?",
+                    options: ["That Jews were colonial settlers sent by Britain", "That Jews migrated long before political Zionism, out of survival needs", "That Palestinians invited Jews to farm their land", "That Israel was founded as a British colony"],
+                    correct: 1,
+                    explanation: "The First Aliyah predates both Herzl's Zionism and the British Mandate. Jews returned for survival, not colonial conquest.",
+                    source: "Jewish Virtual Library - Aliyah"
+                },
+                {
+                    id: 'roots_009',
+                    question: "How many Jews lived in Palestine around 1882, at the start of the First Aliyah?",
+                    options: ["5,000-10,000", "20,000-40,000", "60,000-80,000", "100,000+"],
+                    correct: 1,
+                    explanation: "Estimates place the Jewish population at ~20,000-40,000, out of a total ~450,000-500,000.",
+                    source: "Encyclopedia Britannica - First Aliyah"
+                },
+                {
+                    id: 'roots_010',
+                    question: "Why did Jews choose this land as a safe haven in 1882?",
+                    options: ["Because Britain promised them autonomy", "Because it was sparsely populated and historically theirs", "Because it was the wealthiest region in the Middle East", "Because the Ottoman government offered free land grants"],
+                    correct: 1,
+                    explanation: "Jews returned because the land was underpopulated, it was historically their homeland, and it offered an escape from European antisemitism.",
+                    source: "Jewish Virtual Library - First Aliyah"
+                }
+            ],
+            1: [ // Section 2 - Violence & Self-Defense (1834-1939)
+                {
+                    id: 'violence_001',
+                    question: "What attack on Jews happened during the 1834 Peasants' Revolt?",
+                    options: ["Hebron Massacre", "Safed Massacre", "Damascus Blood Libel", "Nebi Musa Riots"],
+                    correct: 1,
+                    explanation: "In 1834, Arab mobs in Safed looted and burned the Jewish quarter, killing Jews. This happened nearly 50 years before the First Aliyah.",
+                    source: "Historical records of 1834 Peasants' Revolt"
+                },
+                {
+                    id: 'violence_002',
+                    question: "What did the riots of 1920, 1921, and 1929 all have in common?",
+                    options: ["They were inspired by Jewish immigration", "They were sparked by Jewish land seizures", "They were massacres of defenseless Jews that went unanswered, accelerating the creation of Jewish defense groups", "The British protected Jews during the massacres"],
+                    correct: 2,
+                    explanation: "In 1920 (Jerusalem), 1921 (Jaffa), and 1929 (Hebron/Safed), Arabs carried out massacres against Jews. The British authorities failed to protect them.",
+                    source: "Historical documentation of British Mandate period"
+                },
+                {
+                    id: 'violence_003',
+                    question: "What Jewish defense force was formed after the 1920 Nebi Musa riots in Jerusalem?",
+                    options: ["Irgun", "Mossad", "Haganah", "IDF"],
+                    correct: 2,
+                    explanation: "In response to the Nebi Musa riots of 1920, Jewish leaders organized the Haganah ('The Defense').",
+                    source: "History of the Haganah organization"
+                },
+                {
+                    id: 'violence_004',
+                    question: "Who emerged as the main instigator of anti-Jewish violence in the 1930s?",
+                    options: ["Faisal bin Hussein", "Haj Amin al-Husseini", "Musa Alami", "Nashashibi Clan"],
+                    correct: 1,
+                    explanation: "The Grand Mufti of Jerusalem, Haj Amin al-Husseini, emerged as the central instigator of anti-Jewish violence during the 1930s.",
+                    source: "Benny Morris, 1948: A History of the First Arab-Israeli War"
+                },
+                {
+                    id: 'violence_005',
+                    question: "What wider impact did Haj Amin al-Husseini have on Jews outside Palestine?",
+                    options: ["He coined the term 'Palestinian' as a way to identify local Arabs", "He spread antisemitic propaganda and incited pogroms across the Middle East", "He built the ADS Farm to help orphans", "He was the first 'Palestinian' to graduate from Cambridge"],
+                    correct: 1,
+                    explanation: "Al-Husseini spread antisemitic propaganda throughout the Arab world, directly influencing events such as the Farhud pogrom in Baghdad (1941).",
+                    source: "Edwin Black, Farhud: Roots of the Arab-Nazi Alliance"
+                },
+                {
+                    id: 'violence_006',
+                    question: "What was the Arab Revolt of 1936-1939?",
+                    options: ["A protest against the Jordanian Government", "An uprising against Jews and the British", "A Zionist uprising against Britain", "A German-backed uprising"],
+                    correct: 1,
+                    explanation: "The Arab Revolt was a violent campaign against both Jews and the British, proving coexistence under Arab majority rule was impossible.",
+                    source: "Historical records of the Arab Revolt"
+                },
+                {
+                    id: 'violence_007',
+                    question: "What did the 1937 Peel Commission recommend?",
+                    options: ["One Arab state only", "Partition into a Jewish and an Arab state", "Expulsion of Arabs from Palestine", "British withdrawal without plan"],
+                    correct: 1,
+                    explanation: "The Peel Commission said Jews and Arabs could not coexist under one state. They proposed partition: ~17% for Jews, over 80% for Arabs.",
+                    source: "Peel Commission Report, 1937"
+                },
+                {
+                    id: 'violence_008',
+                    question: "How much of the population were Jews at the time of the Peel Commission, and how much land were they offered?",
+                    options: ["10% of population, 50% of land", "30% of population, 17% of land", "50% of population, 30% of land", "17% of population, 30% of land"],
+                    correct: 1,
+                    explanation: "Jews were ~30% of the population but offered only 17% of the land. Still, they accepted — desperate for a state — while Arabs rejected.",
+                    source: "Peel Commission demographic data"
+                },
+                {
+                    id: 'violence_009',
+                    question: "What did the 1939 White Paper do at the height of the Holocaust?",
+                    options: ["Increase Jewish immigration to 500,000 over five years", "Cap Jewish immigration at 75,000 over five years and promise an Arab state", "Recognize Jewish statehood", "Provide the Haganah with weapons"],
+                    correct: 1,
+                    explanation: "The 1939 White Paper limited Jewish immigration to 75,000 over five years and rejected the idea of a Jewish state.",
+                    source: "British White Paper, 1939"
+                },
+                {
+                    id: 'violence_010',
+                    question: "What does the White Paper prove about claims that Jews were 'colonial partners' with Britain?",
+                    options: ["That Jews actually controlled the British", "That Britain betrayed the Jews under Arab pressure, not partnering with them", "That Britain gave Jews extra weapons", "That Zionism was a British plot"],
+                    correct: 1,
+                    explanation: "Britain shut the doors of Palestine to Jews during the Holocaust. This shows Jews were betrayed — not colonial collaborators.",
+                    source: "Analysis of British Mandate policies"
+                }
+            ],
+            2: [ // Section 3 - Israel's Birth & Survival (1947-1948)
+                {
+                    id: 'birth_001',
+                    question: "What did the United Nations propose in 1947?",
+                    options: ["To partition the land into a Jewish and an Arab state", "To give all of Palestine to the Arabs", "To establish Jerusalem as the Jewish capital immediately", "To delay partition until after WWII"],
+                    correct: 0,
+                    explanation: "On November 29, 1947, the UN voted to partition the land into a Jewish state, an Arab state, and an international zone for Jerusalem.",
+                    source: "UN Resolution 181, 1947"
+                },
+                {
+                    id: 'birth_002',
+                    question: "How did the Jews respond to the 1947 UN Partition Plan?",
+                    options: ["They rejected it, demanding more land", "They accepted it, despite the small territory", "They ignored it and prepared for war", "They asked Britain to stay in power"],
+                    correct: 1,
+                    explanation: "Jews accepted partition — grateful for a state of their own after centuries of persecution — even though the borders were unfavorable.",
+                    source: "Jewish Agency response to UN Partition"
+                },
+                {
+                    id: 'birth_003',
+                    question: "How did the Arabs respond to the UN Partition Plan?",
+                    options: ["They accepted, but with conditions", "They rejected it outright", "They proposed their own two-state solution", "They asked the British to mediate further"],
+                    correct: 1,
+                    explanation: "The Arab leadership rejected partition completely, unwilling to accept any Jewish state.",
+                    source: "Arab Higher Committee response, 1947"
+                },
+                {
+                    id: 'birth_004',
+                    question: "What event marked the beginning of the 1947-1948 Civil War in Mandate Palestine?",
+                    options: ["The British withdrawal", "The Hebron massacre", "An Arab attack killing Jewish civilians", "The declaration of Israeli independence"],
+                    correct: 2,
+                    explanation: "On November 30, 1947 — one day after the UN vote — Arabs killed 18 Jewish civilians, triggering a civil war.",
+                    source: "Historical records of November 30, 1947"
+                },
+                {
+                    id: 'birth_005',
+                    question: "Why was there urgency for Jews to win the internal conflict before May 1948?",
+                    options: ["The British had promised them weapons", "They knew surrounding Arab armies would invade after independence", "They wanted to seize more territory", "They feared a Soviet attack"],
+                    correct: 1,
+                    explanation: "Jews knew that once independence was declared, they'd be invaded. Even the CIA predicted Israel would be crushed.",
+                    source: "CIA assessment, 1948"
+                },
+                {
+                    id: 'birth_006',
+                    question: "What portion of the Jewish fighting force at the time were Holocaust survivors?",
+                    options: ["Less than 10%", "About one-third", "About one-half", "Nearly all"],
+                    correct: 1,
+                    explanation: "Roughly one-third of Jewish fighters were Holocaust survivors, carrying unimaginable trauma yet forced into another existential war.",
+                    source: "IDF historical archives"
+                },
+                {
+                    id: 'birth_007',
+                    question: "Did Israel have a top-down policy of mass displacement of Arabs in 1948?",
+                    options: ["Yes, every Arab village was expelled", "No, archives show Ben-Gurion sometimes ordered Arabs to stay", "Yes, the British forced Jews to expel Arabs", "No, but Arabs voluntarily left in fear"],
+                    correct: 1,
+                    explanation: "Archival evidence shows Ben-Gurion insisted some Arabs remain if they hadn't joined revolts. There was no race-based expulsion policy.",
+                    source: "Israeli state archives"
+                },
+                {
+                    id: 'birth_008',
+                    question: "When Israel declared independence on May 15, 1948, what happened immediately?",
+                    options: ["Britain launched airstrikes", "The Arab League invaded from all sides", "The UN recognized Israel unanimously", "Jerusalem was annexed by the UN"],
+                    correct: 1,
+                    explanation: "On May 15, 1948, the armies of Egypt, Syria, Jordan, Lebanon, and Iraq invaded, intent on destroying the newborn state.",
+                    source: "Historical records of May 15, 1948"
+                },
+                {
+                    id: 'birth_009',
+                    question: "What were the main motivations of Arab states in attacking Israel in 1948?",
+                    options: ["To protect Palestinians only", "To expand their own territories", "To support a joint Arab federation", "To prevent British control"],
+                    correct: 1,
+                    explanation: "Arab states used the war to pursue their own geopolitical goals. Jordan annexed the West Bank, Egypt occupied Gaza.",
+                    source: "Analysis of 1948 Arab invasion"
+                },
+                {
+                    id: 'birth_010',
+                    question: "Why is Israel's victory in 1948 often one of the greatest underdog stories in modern history?",
+                    options: ["Because Israel was heavily armed by Britain", "Because Jews had just emerged from the Holocaust", "Because Israel was supported by US and USSR", "Because Arabs refused to fight"],
+                    correct: 1,
+                    explanation: "Against all odds — outnumbered, under-armed, and carrying Holocaust trauma — Israel defeated five invading Arab armies.",
+                    source: "Military analysis of 1948 war"
+                }
+            ],
+            3: [ // Section 4 - The Six-Day War & Aftermath (1967-Present)
+                {
+                    id: 'sixday_001',
+                    question: "On the eve of the Six-Day War in 1967, how did many Jews describe their fear of Israel's destruction?",
+                    options: ["They feared losing Tel Aviv", "They said, 'When the last Israeli leaves, turn off the lights'", "They expected a quick victory", "They trusted the U.S. to protect them"],
+                    correct: 1,
+                    explanation: "Many Israelis felt the state would be wiped out. The dark humor — 'turn off the lights' — captured the sense of impending annihilation.",
+                    source: "Israeli testimonies from 1967"
+                },
+                {
+                    id: 'sixday_002',
+                    question: "What decisive military move did Moshe Dayan order to begin the Six-Day War?",
+                    options: ["An invasion of Gaza", "A surprise strike destroying Egypt's air force", "A naval blockade of Syria", "A tank offensive into Jordan"],
+                    correct: 1,
+                    explanation: "Israel struck first, wiping out Egypt's air force on the ground. This bold move ensured air superiority.",
+                    source: "IDF military archives"
+                },
+                {
+                    id: 'sixday_003',
+                    question: "How confident was Egypt's leader Gamal Abdel Nasser before the war?",
+                    options: ["He considered surrendering", "He privately begged Israel for peace", "He was seen laughing with his pilots days before Israel destroyed his air force", "He publicly warned Egyptians to flee Cairo"],
+                    correct: 2,
+                    explanation: "Nasser was so confident of victory he was laughing with his pilots the day before Israel's preemptive strike.",
+                    source: "Egyptian military documentation"
+                },
+                {
+                    id: 'sixday_004',
+                    question: "After the Six-Day War, how did Israel respond to its stunning territorial victories?",
+                    options: ["It annexed all conquered lands immediately", "It offered to return the land in exchange for peace", "It refused all negotiations", "It expelled every Arab from the territories"],
+                    correct: 1,
+                    explanation: "Israel offered to return captured land in exchange for peace, showing it wasn't seeking conquest but survival.",
+                    source: "Israeli diplomatic archives"
+                },
+                {
+                    id: 'sixday_005',
+                    question: "What was the Khartoum Resolution of 1967, also known as 'The Three No's'?",
+                    options: ["No war, no hate, no extremism", "No peace, no recognition, no compromise with Israel", "No settlements, no refugees, no negotiations", "No occupation, no borders, no armistice"],
+                    correct: 1,
+                    explanation: "Arab leaders declared 'No peace, no recognition, and no compromise' — rejecting Israel's peace offer outright.",
+                    source: "Khartoum Resolution, 1967"
+                },
+                {
+                    id: 'sixday_006',
+                    question: "Why is the 'No compromise' part of the Khartoum Resolution especially telling?",
+                    options: ["It shows Arabs wanted bigger borders", "It proves the conflict wasn't about land, but about rejecting Jewish statehood", "It referred only to Jerusalem", "It was meant as a temporary position"],
+                    correct: 1,
+                    explanation: "Israel offered land back, but Arabs said 'No compromise.' This reveals it wasn't about borders — it was about rejecting Israel's existence.",
+                    source: "Analysis of Khartoum Resolution"
+                },
+                {
+                    id: 'sixday_007',
+                    question: "After 1967, Israel had complete military control over Palestinians. What does their population trend prove?",
+                    options: ["That Israel reduced the population to near zero", "That the Palestinian population grew by over 300% under Israeli control", "That Israel forced Palestinians to leave", "That genocide was successfully carried out"],
+                    correct: 1,
+                    explanation: "Despite total military dominance, the Palestinian population grew more than 300% since 1967.",
+                    source: "UN demographic statistics"
+                },
+                {
+                    id: 'sixday_008',
+                    question: "How does this population growth compare to claims that Israel is committing genocide?",
+                    options: ["It disproves them — genocides don't result in population growth", "It supports them — growth is irrelevant", "It shows Israel's policies don't affect Palestinians", "It's only due to foreign aid"],
+                    correct: 0,
+                    explanation: "No genocide in history has produced population growth under occupation. Palestinian demographics disprove genocide claims.",
+                    source: "Comparative genocide studies"
+                },
+                {
+                    id: 'sixday_009',
+                    question: "Even in the current war (post-October 7, 2023), what do Hamas-influenced sources admit about the population?",
+                    options: ["It has been completely eliminated", "It has decreased only about 6%", "It has grown by 20%", "It has remained exactly the same"],
+                    correct: 1,
+                    explanation: "Even Hamas-linked sources estimate only a 6% decrease since October 7 — not comparable to historical genocides.",
+                    source: "Gaza Health Ministry data"
+                },
+                {
+                    id: 'sixday_010',
+                    question: "Why does the 1967 war remain such a pivotal example in defending Israel?",
+                    options: ["Because Israel conquered the entire Middle East", "Because it showed Israel was not seeking land, but peace — and that Arab rejection was absolute", "Because Israel was armed by the U.N.", "Because it created the refugee problem"],
+                    correct: 1,
+                    explanation: "Israel offered everything back after victory. Arabs refused with the 'Three No's.' This demonstrates the conflict is about rejection of Jewish sovereignty.",
+                    source: "Historical analysis of 1967 war aftermath"
+                }
+            ],
+            4: [ // Section 5 - The Current Conflict
+                {
+                    id: 'current_001',
+                    question: "In 2022, what did Palestinian Islamic Jihad propose to Hamas?",
+                    options: ["A peace treaty with Israel", "A joint terrorist attack against Israel", "A ceasefire to end violence", "An economic partnership"],
+                    correct: 1,
+                    explanation: "PIJ proposed a terrorist attack. Hamas refused, and Israel mistakenly saw this as a sign of good faith.",
+                    source: "Intelligence reports, 2022"
+                },
+                {
+                    id: 'current_002',
+                    question: "How did Israel respond after Hamas rejected PIJ's 2022 proposal?",
+                    options: ["They tightened checkpoints", "They allowed thousands more Gazans to enter Israel daily for work", "They launched a preemptive strike", "They canceled peace talks"],
+                    correct: 1,
+                    explanation: "Believing Hamas might be softening, Israel expanded work permits. In reality, it was a decoy to lower Israel's guard.",
+                    source: "Israeli security analysis"
+                },
+                {
+                    id: 'current_003',
+                    question: "What did the October 7, 2023 Hamas attack reveal about Hamas's intentions?",
+                    options: ["That they were committed to coexistence", "That they used the work-permit decoy to prepare a larger massacre", "That they no longer had weapons", "That they wanted negotiations"],
+                    correct: 1,
+                    explanation: "Hamas used the 2022 'good faith' gesture as cover to prepare the October 7 attack.",
+                    source: "Post-October 7 intelligence assessment"
+                },
+                {
+                    id: 'current_004',
+                    question: "What pattern is seen when Israel reduces checkpoints and restrictions?",
+                    options: ["Terrorism increases", "Terrorism decreases", "Nothing changes", "International support for Israel increases"],
+                    correct: 0,
+                    explanation: "Every time restrictions are loosened, terrorism rises. Every time they are tightened, terrorism falls.",
+                    source: "Israeli security statistics"
+                },
+                {
+                    id: 'current_005',
+                    question: "How has the October 7 war been 'weaponized' internationally?",
+                    options: ["It united the world behind Israel", "It has been used to portray Israel as the source of global problems", "It forced Hamas to disband", "It ended antisemitism worldwide"],
+                    correct: 1,
+                    explanation: "The war has been distorted into propaganda, blaming Israel for world ills, echoing historic antisemitic patterns.",
+                    source: "Media analysis post-October 7"
+                },
+                {
+                    id: 'current_006',
+                    question: "Which country has been especially effective at segmenting audiences with anti-Israel messaging?",
+                    options: ["Jordan", "Qatar", "France", "Iran"],
+                    correct: 1,
+                    explanation: "Qatar tailors propaganda to different communities worldwide, fueling hostility toward Israel.",
+                    source: "Analysis of Qatar media strategy"
+                },
+                {
+                    id: 'current_007',
+                    question: "What tragic event illustrates how deeply antisemitism has spread, even among former coexistence advocates?",
+                    options: ["Bombing of Tel Aviv", "Murder of Sarah and Yaron in a Holocaust museum", "Burning of the ADS Farm", "Assassination of Rabin"],
+                    correct: 1,
+                    explanation: "Sarah and Yaron, former AJC Access members who fought for coexistence, were murdered simply for being Israeli — inside a Holocaust museum.",
+                    source: "Incident report, Holocaust museum"
+                },
+                {
+                    id: 'current_008',
+                    question: "What is one of the core missions of the Jewish Warrior Project?",
+                    options: ["To teach martial arts exclusively", "To surgically dissect misinformation and fill in missing facts with sources", "To build settlements in Gaza", "To campaign for British partnership"],
+                    correct: 1,
+                    explanation: "The Project corrects misinformation online by analyzing articles and restoring erased history with primary sources.",
+                    source: "Jewish Warrior Project mission statement"
+                },
+                {
+                    id: 'current_009',
+                    question: "What practical technology is being developed to keep communities safe?",
+                    options: ["A fundraising app", "Ally indexing software that alerts nearby volunteers when Jews are harassed", "A news aggregator", "A language learning tool"],
+                    correct: 1,
+                    explanation: "The system lets someone press a red button if attacked, alerting trained allies nearby faster than police response.",
+                    source: "Jewish Warrior Project technology brief"
+                },
+                {
+                    id: 'current_010',
+                    question: "What final call to action does the Project leave with participants?",
+                    options: ["Stay silent, but strong", "Ask yourself: what is your Jewish Duty in life — how will you protect and defend our people?", "Avoid confrontation at all costs", "Rely on others to take action"],
+                    correct: 1,
+                    explanation: "Every Jew must decide how they will contribute — through education, advocacy, protection, or action.",
+                    source: "Jewish Warrior Project call to action"
+                }
+            ]
+        };
+
+        const categoryNames = [
+            "Roots & Early Return (1882-1897)",
+            "Violence & Self-Defense (1834-1939)",
+            "Israel's Birth & Survival (1947-1948)",
+            "The Six-Day War & Aftermath (1967-Present)",
+            "The Current Conflict"
+        ];
+
+        const categoryDescriptions = [
+            "First Aliyah and early Jewish return",
+            "Arab violence and Jewish self-defense",
+            "UN partition and Independence War",
+            "1967 victory and peace offers",
+            "October 7 and current challenges"
+        ];
+
+        const ranks = [
+            { min: 0, max: 10, name: "Apprentice", description: "Beginning your journey of knowledge" },
+            { min: 11, max: 20, name: "Scholar", description: "Developing understanding of history" },
+            { min: 21, max: 30, name: "Haganah", description: "Ready to defend with facts" },
+            { min: 31, max: 40, name: "IDF Soldier", description: "Armed with truth and knowledge" },
+            { min: 41, max: 50, name: "Mossad Operative", description: "Master of intelligence and information" }
+        ];
+
+        // Application state
+        let currentState = {
+            userInfo: {},
+            quizMode: 'all',
+            selectedCategories: [],
+            currentQuestions: [],
+            currentQuestionIndex: 0,
+            answers: [],
+            showExplanations: false,
+            startTime: null,
+            endTime: null
+        };
+
+        function validateForm(firstName, lastName, email) {
+            const errors = [];
+            
+            // Validation très permissive - email seulement si fourni
+            if (email && email.trim() !== '') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errors.push("Format d'email invalide");
+                }
+            }
+            
+            return errors;
+        }
+
+        function showFormErrors(errors) {
+            // Remove existing error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            
+            if (errors.length > 0) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.style.cssText = `
+                    background: #fff3cd; 
+                    border: 1px solid #ffeaa7; 
+                    color: #856404; 
+                    padding: 15px; 
+                    margin: 20px 0; 
+                    border-radius: 4px;
+                    font-weight: 500;
+                `;
+                errorDiv.innerHTML = '⚠️ ' + errors.join('<br>⚠️ ');
+                
+                const formGrid = document.querySelector('.form-grid');
+                formGrid.parentNode.insertBefore(errorDiv, formGrid.nextSibling);
+                
+                return false;
+            }
+            return true;
+        }
+
+        function proceedToCategories() {
+            console.log('Proceed button clicked'); // Debug log
+            
+            const proceedBtn = document.getElementById('proceedBtn');
+            
+            // Visual feedback
+            proceedBtn.disabled = true;
+            proceedBtn.textContent = 'LOADING...';
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            
+            // Validate form with very relaxed requirements  
+            const errors = validateForm(firstName, lastName, email);
+            if (!showFormErrors(errors)) {
+                // Re-enable button if validation fails
+                proceedBtn.disabled = false;
+                proceedBtn.textContent = 'PROCEED TO ASSESSMENT';
+                return;
+            }
+
+            // Create user info with smart fallbacks
+            const displayName = firstName || lastName || 'Anonymous User';
+            currentState.userInfo = {
+                firstName: firstName || displayName,
+                lastName: lastName || '',
+                email: email || ''
+            };
+
+            // Save to localStorage with error handling
+            try {
+                localStorage.setItem('userInfo', JSON.stringify(currentState.userInfo));
+                console.log('User info saved:', currentState.userInfo);
+            } catch (e) {
+                console.warn('LocalStorage not available:', e);
+            }
+
+            // Clear any existing error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+            // Small delay for visual feedback
+            setTimeout(() => {
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('categoryMenuSection').classList.add('active');
+                
+                // Default to all categories selected for complete assessment
+                if (currentState.quizMode === 'all') {
+                    selectAllCategories();
+                }
+                
+                // Re-enable and reset button
+                proceedBtn.disabled = false;
+                proceedBtn.textContent = 'PROCEED TO ASSESSMENT';
+                
+                console.log('Successfully proceeded to categories');
+            }, 300);
+        }
+
+        // Initialize categories
+        function initializeCategories() {
+            const categoryGrid = document.getElementById('categoryGrid');
+            categoryGrid.innerHTML = '';
+            
+            for (let i = 0; i < 5; i++) {
+                const card = document.createElement('div');
+                card.className = 'category-card';
+                card.setAttribute('data-category', i);
+                card.onclick = () => selectCategory(i);
+                
+                card.innerHTML = `
+                    <div class="category-icon">${i === 0 ? '📜' : i === 1 ? '⚔️' : i === 2 ? '🏛️' : i === 3 ? '✡️' : '🔥'}</div>
+                    <div class="category-name">${categoryNames[i]}</div>
+                    <div class="category-description">${categoryDescriptions[i]}</div>
+                    <div class="category-questions">10 Questions</div>
+                `;
+                
+                categoryGrid.appendChild(card);
+            }
+        }
+
+        function backToForm() {
+            document.getElementById('categoryMenuSection').classList.remove('active');
+            document.getElementById('formSection').style.display = 'block';
+        }
+
+        function setQuizMode(mode) {
+            currentState.quizMode = mode;
+            const modeBtns = document.querySelectorAll('.mode-btn');
+            modeBtns.forEach(btn => {
+                if ((mode === 'single' && btn.textContent.includes('SINGLE')) ||
+                    (mode === 'all' && btn.textContent.includes('COMPLETE'))) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            if (mode === 'all') {
+                selectAllCategories();
+            } else {
+                currentState.selectedCategories = [];
+                categoryCards.forEach(card => card.classList.remove('selected'));
+                document.getElementById('startQuizBtn').disabled = true;
+            }
+        }
+
+        function selectAllCategories() {
+            currentState.selectedCategories = [0, 1, 2, 3, 4];
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => card.classList.add('selected'));
+            document.getElementById('startQuizBtn').disabled = false;
+        }
+
+        function selectCategory(categoryId) {
+            if (currentState.quizMode === 'all') return;
+
+            const card = document.querySelector(`[data-category="${categoryId}"]`);
+            
+            if (currentState.selectedCategories.includes(categoryId)) {
+                currentState.selectedCategories = currentState.selectedCategories.filter(c => c !== categoryId);
+                card.classList.remove('selected');
+            } else {
+                document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+                currentState.selectedCategories = [categoryId];
+                card.classList.add('selected');
+            }
+
+            document.getElementById('startQuizBtn').disabled = currentState.selectedCategories.length === 0;
+        }
+
+        // Fonction pour mélanger un array (algorithme Fisher-Yates)
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Fonction pour mélanger les options d'une question
+        function shuffleQuestionOptions(question) {
+            const optionsWithIndices = question.options.map((option, index) => ({
+                text: option,
+                originalIndex: index
+            }));
+            
+            const shuffledOptions = shuffleArray(optionsWithIndices);
+            
+            return {
+                ...question,
+                shuffledOptions: shuffledOptions.map(item => item.text),
+                shuffledCorrect: shuffledOptions.findIndex(item => item.originalIndex === question.correct)
+            };
+        }
+
+        function startQuiz() {
+            currentState.currentQuestions = [];
+            currentState.selectedCategories.forEach(catId => {
+                const categoryQuestions = questionsDB[catId].map(q => {
+                    const questionWithCategory = {
+                        ...q,
+                        category: categoryNames[catId]
+                    };
+                    // Mélanger les options de chaque question
+                    return shuffleQuestionOptions(questionWithCategory);
+                });
+                currentState.currentQuestions.push(...categoryQuestions);
+            });
+
+            currentState.currentQuestionIndex = 0;
+            currentState.answers = [];
+            currentState.startTime = new Date();
+
+            document.getElementById('categoryMenuSection').classList.remove('active');
+            document.getElementById('quizSection').classList.add('active');
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = currentState.currentQuestions[currentState.currentQuestionIndex];
+            const totalQuestions = currentState.currentQuestions.length;
+            const progress = ((currentState.currentQuestionIndex + 1) / totalQuestions) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentState.currentQuestionIndex + 1} of ${totalQuestions}`;
+            document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
+            
+            document.getElementById('categoryBadge').textContent = question.category.toUpperCase();
+            document.getElementById('questionNumber').textContent = `Question ${currentState.currentQuestionIndex + 1}/${totalQuestions}`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            const letters = ['A', 'B', 'C', 'D'];
+            
+            const optionsToShow = question.shuffledOptions || question.options;
+            
+            optionsToShow.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                if (currentState.answers[currentState.currentQuestionIndex] === index) {
+                    optionDiv.classList.add('selected');
+                }
+                
+                optionDiv.innerHTML = `
+                    <span class="option-letter">${letters[index]}</span>
+                    <span>${option}</span>
+                `;
+                
+                optionDiv.onclick = function() {
+                    selectOption(index);
+                };
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Show explanation if answer was already selected
+            if (currentState.answers[currentState.currentQuestionIndex] !== undefined && currentState.showExplanations) {
+                showExplanation(question);
+            } else {
+                document.getElementById('explanationSection').classList.remove('show');
+            }
+            
+            updateButtons();
+        }
+
+        function selectOption(index) {
+            currentState.answers[currentState.currentQuestionIndex] = index;
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, i) => {
+                if (i === index) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+
+            // Show explanation after selection
+            const question = currentState.currentQuestions[currentState.currentQuestionIndex];
+            if (currentState.showExplanations) {
+                showExplanation(question);
+            }
+
+            updateButtons();
+        }
+
+        function showExplanation(question) {
+            const explanationSection = document.getElementById('explanationSection');
+            const explanationText = document.getElementById('explanationText');
+            const sourceLink = document.getElementById('sourceLink');
+            
+            explanationText.textContent = question.explanation;
+            
+            // Better source link handling
+            if (question.source) {
+                sourceLink.textContent = `Source: ${question.source}`;
+                sourceLink.style.display = 'inline-block';
+                sourceLink.onclick = function(e) {
+                    e.preventDefault();
+                    alert(`Source référencée: ${question.source}\n\nCette information est basée sur des documents historiques vérifiés. Pour plus de détails, consultez les archives officielles ou bibliothèques académiques.`);
+                };
+            } else {
+                sourceLink.style.display = 'none';
+            }
+            
+            explanationSection.classList.add('show');
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentState.currentQuestionIndex === 0;
+            
+            if (currentState.currentQuestionIndex === currentState.currentQuestions.length - 1) {
+                nextBtn.innerHTML = 'COMPLETE ✓';
+                nextBtn.disabled = currentState.answers[currentState.currentQuestionIndex] === undefined;
+            } else {
+                nextBtn.innerHTML = 'NEXT ►';
+                nextBtn.disabled = currentState.answers[currentState.currentQuestionIndex] === undefined;
+            }
+        }
+
+        function previousQuestion() {
+            if (currentState.currentQuestionIndex > 0) {
+                currentState.currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentState.currentQuestionIndex < currentState.currentQuestions.length - 1) {
+                currentState.currentQuestionIndex++;
+                showQuestion();
+            } else if (currentState.answers[currentState.currentQuestionIndex] !== undefined) {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            currentState.endTime = new Date();
+            document.getElementById('quizSection').classList.remove('active');
+            document.getElementById('resultsSection').classList.add('active');
+            
+            let totalScore = 0;
+            const categoryScores = {};
+            
+            currentState.currentQuestions.forEach((question, index) => {
+                if (!categoryScores[question.category]) {
+                    categoryScores[question.category] = { correct: 0, total: 0 };
+                }
+                categoryScores[question.category].total++;
+                
+                // Utiliser shuffledCorrect si disponible (options mélangées), sinon utiliser correct
+                const correctAnswer = question.shuffledCorrect !== undefined ? question.shuffledCorrect : question.correct;
+                if (currentState.answers[index] === correctAnswer) {
+                    totalScore++;
+                    categoryScores[question.category].correct++;
+                }
+            });
+            
+            const totalQuestions = currentState.currentQuestions.length;
+            const percentage = Math.round((totalScore / totalQuestions) * 100);
+            
+            // Determine rank
+            const rank = ranks.find(r => totalScore >= r.min && totalScore <= r.max);
+            
+            document.getElementById('rankName').textContent = rank.name;
+            document.getElementById('rankDescription').textContent = rank.description;
+            document.getElementById('scoreDisplay').textContent = `${totalScore}/${totalQuestions} (${percentage}%)`;
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = 'Outstanding! You have mastered the knowledge.';
+            } else if (percentage >= 70) {
+                message = 'Excellent work! You have strong understanding.';
+            } else if (percentage >= 50) {
+                message = 'Good effort! Continue learning and growing.';
+            } else {
+                message = 'Keep studying! Knowledge is power.';
+            }
+            document.getElementById('resultMessage').textContent = message;
+            
+            const categoryResultsDiv = document.getElementById('categoryResults');
+            categoryResultsDiv.innerHTML = '<h3>RESULTS BY SECTION</h3>';
+            
+            for (const category in categoryScores) {
+                const score = categoryScores[category];
+                const catPercentage = Math.round((score.correct / score.total) * 100);
+                
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category-result';
+                categoryDiv.innerHTML = `
+                    <h4>${category}</h4>
+                    <div class="category-score">
+                        <span class="score-text">${score.correct}/${score.total} (${catPercentage}%)</span>
+                    </div>
+                `;
+                categoryResultsDiv.appendChild(categoryDiv);
+            }
+
+            // Save results to localStorage with error handling
+            try {
+                const results = {
+                    userInfo: currentState.userInfo,
+                    score: totalScore,
+                    totalQuestions: totalQuestions,
+                    percentage: percentage,
+                    rank: rank.name,
+                    categoryScores: categoryScores,
+                    completedAt: new Date().toISOString(),
+                    duration: Math.round((currentState.endTime - currentState.startTime) / 1000)
+                };
+
+                const savedResults = JSON.parse(localStorage.getItem('quizResults') || '[]');
+                savedResults.push(results);
+                localStorage.setItem('quizResults', JSON.stringify(savedResults));
+            } catch (e) {
+                console.warn('Could not save results to localStorage:', e);
+            }
+        }
+
+        // Nouvelle fonction generateCertificate qui remplace downloadResults
+        function generateCertificate() {
+            const name = currentState.userInfo.firstName && currentState.userInfo.lastName ? 
+                          `${currentState.userInfo.firstName} ${currentState.userInfo.lastName}` : 
+                          currentState.userInfo.firstName || 'Candidate';
+            const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const totalScore = currentState.answers.filter((ans, idx) => {
+                const question = currentState.currentQuestions[idx];
+                const correctAnswer = question.shuffledCorrect !== undefined ? question.shuffledCorrect : question.correct;
+                return ans === correctAnswer;
+            }).length;
+            const totalQuestions = currentState.currentQuestions.length;
+            const percentage = Math.round((totalScore / totalQuestions) * 100);
+            const rank = ranks.find(r => totalScore >= r.min && totalScore <= r.max);
+            
+            const certificateHTML = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Certificate of Excellence - ${name}</title>
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;900&family=Playfair+Display:wght@400;700;900&display=swap');
+                    
+                    * {
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                    }
+                    
+                    body {
+                        font-family: 'Heebo', sans-serif;
+                        background: linear-gradient(135deg, #001122 0%, #003366 50%, #0038b8 100%);
+                        min-height: 100vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 20px;
+                    }
+                    
+                    .certificate-container {
+                        background: linear-gradient(145deg, #ffffff 0%, #f8f9fd 100%);
+                        width: 100%;
+                        max-width: 1000px;
+                        min-height: auto; /* Modifié: hauteur automatique */
+                        position: relative;
+                        box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+                        border: 1px solid rgba(0,56,184,0.1);
+                    }
+                    
+                    .certificate-border {
+                        position: relative; /* Modifié: de absolute à relative */
+                        background: linear-gradient(45deg, #0038b8 0%, #0048eb 25%, #0038b8 50%, #00216c 75%, #0038b8 100%);
+                        padding: 25px;
+                    }
+                    
+                    .certificate-inner {
+                        background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+                        position: relative;
+                        padding: 50px; /* Réduit de 70px à 50px */
+                        min-height: auto; /* Ajouté */
+                    }
+                    
+                    /* En-tête */
+                    .header-section {
+                        text-align: center;
+                        margin-bottom: 30px;
+                    }
+                    
+                    .premium-logo {
+                        width: 120px;
+                        height: 120px;
+                        margin: 0 auto 25px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: linear-gradient(135deg, #0038b8, #0048eb);
+                        border-radius: 50%;
+                        box-shadow: 0 10px 30px rgba(0,56,184,0.3);
+                    }
+                    
+                    .premium-logo svg {
+                        width: 70px;
+                        height: 70px;
+                    }
+                    
+                    .organization-title {
+                        font-family: 'Playfair Display', serif;
+                        color: #00216c;
+                        font-size: 20px;
+                        font-weight: 700;
+                        letter-spacing: 4px;
+                        margin-bottom: 8px;
+                        text-transform: uppercase;
+                    }
+                    
+                    .certificate-type {
+                        font-family: 'Playfair Display', serif;
+                        color: #0038b8;
+                        font-size: 42px;
+                        font-weight: 900;
+                        letter-spacing: 2px;
+                        margin-bottom: 8px;
+                        position: relative;
+                    }
+                    
+                    .certificate-type::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -5px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 150px;
+                        height: 3px;
+                        background: linear-gradient(90deg, transparent, #FFD700, transparent);
+                    }
+                    
+                    .hebrew-subtitle {
+                        font-size: 22px;
+                        color: #0038b8;
+                        margin-bottom: 8px;
+                        opacity: 0.9;
+                    }
+                    
+                    .creators-credit {
+                        font-size: 14px;
+                        color: #666;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                        opacity: 0.8;
+                    }
+                    
+                    /* Section principale */
+                    .main-content {
+                        text-align: center;
+                        margin: 30px 0;
+                    }
+                    
+                    .certification-text {
+                        font-size: 20px;
+                        color: #444;
+                        margin-bottom: 25px;
+                        font-weight: 400;
+                    }
+                    
+                    .recipient-name {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 46px;
+                        color: #00216c;
+                        font-weight: 900;
+                        margin: 20px 0 10px 0; /* Réduit la marge du bas */
+                        padding: 25px 30px;
+                        background: linear-gradient(135deg, #f8f9fd, #ffffff);
+                        border: 2px solid #0038b8;
+                        border-radius: 8px;
+                        letter-spacing: 2px;
+                        text-transform: capitalize;
+                        box-shadow: 0 8px 25px rgba(0,56,184,0.1);
+                        position: relative;
+                    }
+                    
+                    .recipient-name::before,
+                    .recipient-name::after {
+                        content: '★';
+                        position: absolute;
+                        font-size: 22px;
+                        color: #FFD700;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+                    
+                    .recipient-name::before { left: 15px; }
+                    .recipient-name::after { right: 15px; }
+                    
+                    .recipient-email {
+                        font-family: 'Heebo', sans-serif;
+                        font-size: 16px;
+                        color: #666;
+                        font-weight: 500;
+                        margin: 5px 0 20px 0; /* Petite marge pour l'espacement */
+                        font-style: italic;
+                        opacity: 0.8;
+                        letter-spacing: 0.5px;
+                    }
+                    
+                    .achievement-description {
+                        font-size: 18px;
+                        color: #555;
+                        margin: 25px 0;
+                        line-height: 1.7;
+                        max-width: 650px;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                    
+                    /* Section score */
+                    .score-showcase {
+                        display: flex;
+                        justify-content: center;
+                        gap: 30px;
+                        margin: 30px 0;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .score-card {
+                        background: linear-gradient(135deg, #0038b8, #0048eb);
+                        color: white;
+                        padding: 20px 25px;
+                        border-radius: 12px;
+                        text-align: center;
+                        box-shadow: 0 8px 25px rgba(0,56,184,0.3);
+                        min-width: 140px;
+                    }
+                    
+                    .score-label {
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        margin-bottom: 6px;
+                        opacity: 0.9;
+                        font-weight: 600;
+                    }
+                    
+                    .score-value {
+                        font-size: 28px;
+                        font-weight: 900;
+                        margin-bottom: 4px;
+                    }
+                    
+                    .score-detail {
+                        font-size: 11px;
+                        opacity: 0.8;
+                        font-weight: 500;
+                    }
+                    
+                    /* Badge de rang */
+                    .rank-badge-container {
+                        margin: 25px 0;
+                    }
+                    
+                    .premium-rank-badge {
+                        display: inline-block;
+                        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+                        color: #00216c;
+                        padding: 18px 40px;
+                        font-size: 24px;
+                        font-weight: 900;
+                        letter-spacing: 3px;
+                        text-transform: uppercase;
+                        border-radius: 40px;
+                        box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+                        border: 3px solid #00216c;
+                        position: relative;
+                    }
+                    
+                    .rank-stars {
+                        position: absolute;
+                        top: -12px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        font-size: 18px;
+                        color: #FFD700;
+                        letter-spacing: 4px;
+                    }
+                    
+                    /* Pied de page */
+                    .footer-section {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 40px;
+                        padding-top: 25px;
+                        border-top: 2px solid #e1e8f0;
+                        gap: 20px;
+                    }
+                    
+                    .date-info,
+                    .authority-info {
+                        text-align: center;
+                        flex: 1;
+                    }
+                    
+                    .info-value {
+                        font-size: 16px;
+                        color: #00216c;
+                        margin-bottom: 10px;
+                        font-weight: 600;
+                    }
+                    
+                    .info-line {
+                        width: 160px;
+                        height: 2px;
+                        background: linear-gradient(90deg, #0038b8, #0048eb);
+                        margin: 0 auto 6px;
+                        border-radius: 1px;
+                    }
+                    
+                    .info-label {
+                        font-size: 11px;
+                        color: #666;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-weight: 600;
+                    }
+                    
+                    .official-seal {
+                        width: 100px;
+                        height: 100px;
+                        background: radial-gradient(circle, #0038b8 0%, #00216c 100%);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        box-shadow: 0 8px 25px rgba(0,56,184,0.4);
+                        border: 3px solid #FFD700;
+                        flex-shrink: 0;
+                    }
+                    
+                    .official-seal svg {
+                        width: 60px;
+                        height: 60px;
+                        fill: white;
+                    }
+                    
+                    /* ID de sécurité */
+                    .security-id {
+                        position: absolute;
+                        bottom: 15px;
+                        right: 20px;
+                        font-family: 'Courier New', monospace;
+                        font-size: 9px;
+                        color: rgba(0,56,184,0.3);
+                    }
+                    
+                    /* Responsive */
+                    @media (max-width: 768px) {
+                        .certificate-inner {
+                            padding: 30px;
+                        }
+                        
+                        .certificate-type {
+                            font-size: 32px;
+                        }
+                        
+                        .recipient-name {
+                            font-size: 36px;
+                            padding: 20px 25px;
+                        }
+                        
+                        .score-showcase {
+                            gap: 15px;
+                        }
+                        
+                        .footer-section {
+                            flex-direction: column;
+                            gap: 25px;
+                            text-align: center;
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="certificate-container">
+                    <!-- ID de sécurité -->
+                    <div class="security-id">ID: JWP-${Date.now().toString(36).toUpperCase()}</div>
+                    
+                    <div class="certificate-border">
+                        <div class="certificate-inner">
+                            <!-- En-tête -->
+                            <div class="header-section">
+                                <div class="premium-logo">
+                                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(60,60)">
+                                            <polygon points="0,-35 30,17.5 -30,17.5" 
+                                                     fill="none" 
+                                                     stroke="white" 
+                                                     stroke-width="4"/>
+                                            <polygon points="0,35 -30,-17.5 30,-17.5" 
+                                                     fill="none" 
+                                                     stroke="white" 
+                                                     stroke-width="4"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                
+                                <div class="organization-title">Jewish Warrior Project</div>
+                                <div class="certificate-type">Certificate of Excellence</div>
+                                <div class="hebrew-subtitle">מדינת ישראל - תעודת הצטיינות</div>
+                                <div class="creators-credit">Created by Zack and Ariel</div>
+                            </div>
+                            
+                            <!-- Contenu principal -->
+                            <div class="main-content">
+                                <div class="certification-text">This is to certify that</div>
+                                
+                                <div class="recipient-name">${name}</div>
+                                ${currentState.userInfo.email ? `<div class="recipient-email">${currentState.userInfo.email}</div>` : ''}
+                                
+                                <div class="achievement-description">
+                                    has successfully completed the comprehensive<br>
+                                    <strong>Israel Knowledge Assessment</strong><br>
+                                    demonstrating exceptional understanding, dedication to historical truth,<br>
+                                    and commitment to defending Israel with facts and knowledge
+                                </div>
+                                
+                                <div class="score-showcase">
+                                    <div class="score-card">
+                                        <div class="score-label">Final Score</div>
+                                        <div class="score-value">${totalScore}/${totalQuestions}</div>
+                                        <div class="score-detail">Questions Correct</div>
+                                    </div>
+                                    <div class="score-card">
+                                        <div class="score-label">Achievement</div>
+                                        <div class="score-value">${percentage}%</div>
+                                        <div class="score-detail">Success Rate</div>
+                                    </div>
+                                    <div class="score-card">
+                                        <div class="score-label">Completion</div>
+                                        <div class="score-value">${new Date().toLocaleDateString('en-US', { year: 'numeric' })}</div>
+                                        <div class="score-detail">Year Certified</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="rank-badge-container">
+                                    <div class="rank-stars">★ ★ ★</div>
+                                    <div class="premium-rank-badge">${rank.name}</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pied de page -->
+                            <div class="footer-section">
+                                <div class="date-info">
+                                    <div class="info-value">${date}</div>
+                                    <div class="info-line"></div>
+                                    <div class="info-label">Date of Completion</div>
+                                </div>
+                                
+                                <div class="official-seal">
+                                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(60,60)">
+                                            <polygon points="0,-30 25,15 -25,15" fill="white"/>
+                                            <polygon points="0,30 -25,-15 25,-15" fill="white"/>
+                                        </g>
+                                    </svg>
+                                </div>
+                                
+                                <div class="authority-info">
+                                    <div class="info-value">Jewish Warrior Project</div>
+                                    <div class="info-line"></div>
+                                    <div class="info-label">Certifying Authority</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </body>
+            </html>`;
+            
+            try {
+                // Créer et télécharger le fichier HTML
+                const blob = new Blob([certificateHTML], { type: 'text/html;charset=utf-8' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `Certificate_${name.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.html`;
+                a.style.display = 'none'; // Masquer le lien
+                document.body.appendChild(a);
+                
+                // Forcer le téléchargement
+                a.click();
+                
+                // Nettoyer
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+                
+            } catch (error) {
+                console.error('Erreur lors du téléchargement:', error);
+                
+                // Solution de secours : ouvrir dans une nouvelle fenêtre
+                try {
+                    const newWindow = window.open('', '_blank');
+                    newWindow.document.write(certificateHTML);
+                    newWindow.document.close();
+                    alert('Le certificat s\'est ouvert dans une nouvelle fenêtre. Utilisez Ctrl+S (ou Cmd+S sur Mac) pour le sauvegarder.');
+                } catch (e) {
+                    // Dernière solution : afficher le HTML pour copie manuelle
+                    const textarea = document.createElement('textarea');
+                    textarea.value = certificateHTML;
+                    textarea.style.width = '100%';
+                    textarea.style.height = '300px';
+                    
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: white;
+                        padding: 20px;
+                        border: 2px solid #0038b8;
+                        z-index: 10000;
+                        max-width: 80%;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                    `;
+                    modal.innerHTML = '<h3 style="margin-bottom: 10px;">Copier le code du certificat:</h3>';
+                    modal.appendChild(textarea);
+                    
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'Fermer';
+                    closeBtn.style.cssText = 'margin-top: 10px; padding: 10px 20px; background: #0038b8; color: white; border: none; cursor: pointer;';
+                    closeBtn.onclick = () => document.body.removeChild(modal);
+                    modal.appendChild(closeBtn);
+                    
+                    document.body.appendChild(modal);
+                    textarea.select();
+                    
+                    alert('Le téléchargement automatique a échoué. Copiez le code HTML affiché et sauvegardez-le dans un fichier .html');
+                }
+            }
+        }
+
+        // Remplacer l'ancienne fonction downloadResults par la nouvelle
+        function downloadResults() {
+            generateCertificate();
+        }
+
+        // Prevent multiple rapid clicks
+        let isProcessing = false;
+        
+        function debounce(func, wait) {
+            if (isProcessing) return;
+            isProcessing = true;
+            func();
+            setTimeout(() => { isProcessing = false; }, wait);
+        }
+
+        // Wrapper functions with error handling
+        const safeExecute = (func, errorMessage) => {
+            return function(...args) {
+                try {
+                    return func.apply(this, args);
+                } catch (e) {
+                    console.error(errorMessage, e);
+                    alert(`Erreur: ${errorMessage}. Veuillez rafraîchir la page si le problème persiste.`);
+                }
+            };
+        };
+
+        function restartQuiz() {
+            console.log('Restart function called'); // Debug
+            
+            // Force reset du flag isProcessing
+            isProcessing = false;
+            
+            // Clear localStorage errors gracefully
+            try {
+                localStorage.removeItem('userInfo');
+                localStorage.removeItem('quizResults');
+            } catch (e) {
+                console.warn('Could not clear localStorage:', e);
+            }
+            
+            currentState = {
+                userInfo: {},
+                quizMode: 'all',
+                selectedCategories: [],
+                currentQuestions: [],
+                currentQuestionIndex: 0,
+                answers: [],
+                showExplanations: false,
+                startTime: null,
+                endTime: null
+            };
+            
+            // Hide results section
+            document.getElementById('resultsSection').classList.remove('active');
+            
+            // Show form section
+            const formSection = document.getElementById('formSection');
+            formSection.style.display = 'block';
+            
+            // Clear form fields
+            document.getElementById('lastName').value = '';
+            document.getElementById('firstName').value = '';
+            document.getElementById('email').value = '';
+            
+            // Reset categories
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Reset progress
+            document.getElementById('progressFill').style.width = '0%';
+            
+            // Remove any error messages
+            document.querySelectorAll('.error-message').forEach(el => el.remove());
+            
+            // Reset mode buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                if (btn.textContent.includes('COMPLETE')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Reset quiz mode and select all categories by default
+            currentState.quizMode = 'all';
+            selectAllCategories();
+            
+            console.log('Quiz restarted successfully'); // Debug
+        }
+        
+        // Safe wrapped functions - defined after all original functions
+        const safeStartQuiz = safeExecute(function() { 
+            if (!isProcessing) startQuiz(); 
+        }, "Erreur lors du démarrage du quiz");
+        
+        const safeNextQuestion = safeExecute(function() { 
+            if (!isProcessing) {
+                isProcessing = true;
+                nextQuestion();
+                setTimeout(() => { isProcessing = false; }, 300);
+            }
+        }, "Erreur lors du passage à la question suivante");
+        
+        const safePreviousQuestion = safeExecute(function() { 
+            if (!isProcessing) {
+                isProcessing = true;
+                previousQuestion();
+                setTimeout(() => { isProcessing = false; }, 300);
+            }
+        }, "Erreur lors du retour à la question précédente");
+        
+        const safeDownloadResults = safeExecute(function() { 
+            if (!isProcessing) {
+                isProcessing = true;
+                downloadResults();
+                setTimeout(() => { isProcessing = false; }, 1000);
+            }
+        }, "Erreur lors du téléchargement");
+        
+        // Version simplifiée et plus robuste
+        const safeRestartQuiz = function() {
+            try {
+                console.log('Safe restart triggered'); // Debug
+                
+                // Force reset du flag de traitement
+                isProcessing = false;
+                
+                // Appeler directement restartQuiz
+                restartQuiz();
+                
+            } catch (error) {
+                console.error('Erreur lors du redémarrage:', error);
+                
+                // Méthode de secours : recharger la page
+                if (confirm('Une erreur est survenue. Voulez-vous recharger la page pour redémarrer le quiz ?')) {
+                    window.location.reload();
+                }
+            }
+        };
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                initializeCategories();
+                
+                // Set default mode to 'all' and select all categories
+                currentState.quizMode = 'all';
+                selectAllCategories();
+                
+                // Set the correct button as active
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    if (btn.textContent.includes('COMPLETE')) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Check for saved user info with error handling
+                try {
+                    const savedUserInfo = localStorage.getItem('userInfo');
+                    if (savedUserInfo) {
+                        const userInfo = JSON.parse(savedUserInfo);
+                        document.getElementById('firstName').value = userInfo.firstName || '';
+                        document.getElementById('lastName').value = userInfo.lastName || '';
+                        document.getElementById('email').value = userInfo.email || '';
+                    }
+                } catch (e) {
+                    console.warn('Could not load saved user info:', e);
+                }
+                
+                console.log('Application initialized successfully');
+            } catch (e) {
+                console.error('Application initialization failed:', e);
+                alert('Erreur lors du chargement de l\'application. Veuillez rafraîchir la page.');
+            }
+        });
+    </script>
+</body>
+</html>
